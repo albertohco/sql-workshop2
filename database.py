@@ -1,4 +1,5 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float
+from enum import Enum
+from sqlalchemy import create_engine, Column, Integer, String, Float, Enum as EnumSQL
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 import os
@@ -27,6 +28,14 @@ Session = sessionmaker(bind=engine)
 
 Base = declarative_base()
 
+# Define o Enum para categorias
+
+
+class Categoria(Enum):
+    ELETRONICO = "eletronico"
+    CURSO = "curso"
+    ALIMENTO = "alimento"
+
 
 # Definindo o modelo de dados
 class Produto(Base):
@@ -36,6 +45,7 @@ class Produto(Base):
     titulo = Column(String, nullable=False)
     descricao = Column(String)
     preco = Column(Float, nullable=False)
+    categoria = Column(EnumSQL(Categoria, name='categoria_enum'))
 
 
 # Criando a tabela
