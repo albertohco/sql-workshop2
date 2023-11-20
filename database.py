@@ -5,7 +5,7 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 import os
 from dotenv import load_dotenv
 
-# Carrega as variáveis de ambiente do arquivo .env
+# Carrega as variáveis de ambiente do arquivo .env.prod
 load_dotenv(dotenv_path=".env.prod")
 
 db_user = os.getenv("POSTGRES_USER")
